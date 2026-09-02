@@ -1,0 +1,1 @@
+把 mp4 等视频文件放到这个文件夹，然后在 index.html 里用 <source src="videos/文件名.mp4" /> 引用。
