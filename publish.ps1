@@ -12,7 +12,7 @@
         （首次推送会弹浏览器登录授权）→ 网页开启 Pages → 拿到网址。
 #>
 
-$ErrorActionPreference = 'Stop'
+$ErrorActionPreference = 'Continue'
 $repo = 'team-docs'          # 仓库名，如被占用可改
 $siteDir = $PSScriptRoot
 $mirror = 'https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/'
@@ -55,10 +55,11 @@ git config user.name 'Team Docs' 2>$null
 git config user.email 'team-docs@local' 2>$null
 git add .
 git commit -m ('update: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm')) 2>$null | Out-Null
-git remote remove origin 2>$null
+$remotes = @(git remote 2>$null)
+if ($remotes -contains 'origin') { git remote remove origin 2>$null | Out-Null }
 git remote add origin "https://github.com/$user/$repo.git"
 Write-Host '   正在推送（如弹出浏览器，请登录 GitHub 并点 Authorize 授权）...'
-git push -u origin main
+git push -u origin main 2>&1
 if ($LASTEXITCODE -ne 0) {
   Write-Host ''
   Write-Host '推送失败。常见原因：' -ForegroundColor Red
