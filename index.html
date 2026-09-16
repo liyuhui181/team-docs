@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>团队技术手册 · 共享文档站</title>
-<meta name="description" content="涂鸦云 IoT 接入与米家插座开发环境搭建手册。" />
+<meta name="description" content="涂鸦云 IoT 接入与米家插座嵌入式端代码文档。" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E📚%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" id="hljs-theme" />
 <style>
@@ -207,7 +207,7 @@
       </div>
       <div class="nav-group">
         <div class="label">技术手册</div>
-        <a class="nav-item" data-route="cat-env">开发环境搭建</a>
+        <a class="nav-item" data-route="cat-env">嵌入式端代码</a>
       </div>
       <div class="nav-group">
         <div class="label">资料</div>
@@ -230,13 +230,13 @@
 
       <!-- HOME -->
       <section class="content" data-route="home">
-        <h1>涂鸦云 IoT 接入 · 开发环境手册</h1>
+        <h1>涂鸦云 IoT 接入 · 嵌入式端代码</h1>
         <p class="lead">ECM50-A 工控机通过 MQTT 标准协议接入涂鸦云平台，上报冷库温度、湿度、运行模式和在线状态。同时通过 python-miio 库在局域网内读取/控制米家智能插座3。</p>
 
         <div class="cards">
           <a class="card" data-go="cat-env">
             <div class="emoji">🛠️</div>
-            <div class="t">开发环境搭建</div>
+            <div class="t">嵌入式端代码</div>
             <div class="d">依赖安装、设备凭证、功能点定义、启动模拟器</div>
           </a>
           <a class="card" data-go="downloads">
@@ -257,11 +257,11 @@
 
       <!-- CATEGORY: ENV -->
       <section class="content" data-route="cat-env">
-        <h1>开发环境搭建</h1>
-        <p class="lead">记录各项目所需的开发环境、依赖版本、初始化步骤，让新成员快速上手。</p>
+        <h1>嵌入式端代码</h1>
+        <p class="lead">涂鸦云 IoT 接入与米家插座的嵌入式端代码说明、依赖版本、功能点定义。</p>
 
         <h2>一、项目概述</h2>
-        <p>本项目包含两个子项目的本地开发环境：</p>
+        <p>本项目包含两个子项目的嵌入式端代码：</p>
         <ul>
           <li><b>涂鸦云 IoT 接入</b> — ECM50-A 工控机通过 MQTT 标准协议接入涂鸦云平台，上报冷库温度、湿度、运行模式和在线状态</li>
           <li><b>米家智能插座3 控制</b> — 通过 python-miio 库在局域网内读取/控制米家插座 (cuco.plug.v3)</li>
@@ -318,7 +318,7 @@ MQTT Port     : 8883 (TLS 加密)</code></pre>
         <p>运行后可在涂鸦 IoT 平台 → 设备管理 → 设备日志中查看实时上报数据，或在前端页面看到设备状态变化。</p>
 
         <h2>七、PC 端 MQTT 连接测试</h2>
-        <p>部署到 ECM50-A 之前，先在 PC 上验证 MQTT 连接是否正常：</p>
+        <p>先在 PC 上验证 MQTT 连接是否正常：</p>
         <div class="code-block">
           <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
           <pre><code class="language-bash"># 验证 MQTT 参数计算
@@ -328,22 +328,7 @@ python tuya_mqtt_auth.py
 python test_tuya_mqtt.py</code></pre>
         </div>
 
-        <h2>八、ECM50-A 设备部署</h2>
-        <p>将 <code>ecm50a_tuya_main.py</code> 上传到 ECM50-A 工控机（MicroPython 环境）：</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-bash"># 1. 修改脚本中的 WiFi 配置
-#    WIFI_SSID = "your_wifi_ssid"
-#    WIFI_PASSWORD = "your_wifi_password"
-
-# 2. 上传到 ECM50-A 设备
-
-# 3. 在设备上运行
-import ecm50a_tuya_main
-ecm50a_tuya_main.main()</code></pre>
-        </div>
-
-        <h2>九、米家插座开发环境</h2>
+        <h2>八、米家插座代码说明</h2>
         <p>通过 python-miio 库在局域网内读取/控制米家智能插座3：</p>
         <div class="code-block">
           <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
@@ -356,7 +341,7 @@ python main.py</code></pre>
         </div>
         <p>Token 获取方式：使用 <a href="https://github.com/PiotrMachowski/Xiaomi-cloud-tokens-extractor/releases" target="_blank">Xiaomi-cloud-tokens-extractor</a> 工具从小米云端提取。</p>
 
-        <h2>十、代码文件说明</h2>
+        <h2>九、代码文件说明</h2>
         <table style="width:100%; border-collapse:collapse;">
           <thead>
             <tr style="border-bottom:2px solid var(--border);">
@@ -368,7 +353,7 @@ python main.py</code></pre>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>tuya_simulator.py</code></td><td style="padding:8px;">涂鸦云数据模拟器（挂机版），循环上报冷库数据，断线自动重连</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>tuya_mqtt_auth.py</code></td><td style="padding:8px;">MQTT 参数计算工具，生成 Client ID / Username / Password</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>test_tuya_mqtt.py</code></td><td style="padding:8px;">PC 端 MQTT 连接测试脚本（paho-mqtt v2 API）</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>ecm50a_tuya_main.py</code></td><td style="padding:8px;">ECM50-A MicroPython 主程序，部署到设备端运行</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>ecm50a_tuya_main.py</code></td><td style="padding:8px;">ECM50-A MicroPython 主程序</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>config.py</code></td><td style="padding:8px;">米家插座配置管理模块（从 .env 加载）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>socket_reader.py</code></td><td style="padding:8px;">米家插座数据读取核心模块（python-miio）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>main.py</code></td><td style="padding:8px;">米家插座示例程序（连接、读取、监控）</td></tr>
@@ -387,7 +372,7 @@ python main.py</code></pre>
             <span class="ficon">📦</span>
             <div class="fmeta">
               <div class="fname">project-code.zip</div>
-              <div class="fdesc">涂鸦云 IoT 接入 + 米家插座开发环境 全部代码文件（含注释）</div>
+              <div class="fdesc">涂鸦云 IoT 接入 + 米家插座嵌入式端代码 全部代码文件（含注释）</div>
             </div>
             <span class="fsize">约 25 KB</span>
             <a class="dl-btn" href="downloads/project-code.zip" download>下载</a>
@@ -406,19 +391,6 @@ python main.py</code></pre>
           <li><code>requirements.txt</code> — Python 依赖列表</li>
           <li><code>.env.example</code> — 配置模板</li>
         </ul>
-
-        <h2>使用方法</h2>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-bash"># 1. 解压下载的 project-code.zip
-unzip project-code.zip
-
-# 2. 安装依赖
-pip install -r requirements.txt
-
-# 3. 启动涂鸦云模拟器
-python tuya_simulator.py</code></pre>
-        </div>
 
         <div class="footer">涂鸦云 IoT 接入项目 · 团队共享文档</div>
       </section>
