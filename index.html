@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>团队技术手册 · 共享文档站</title>
-<meta name="description" content="团队共享技术手册：代码、图片、视频一站式访问，浏览器直接打开，免登录。" />
+<meta name="description" content="涂鸦云 IoT 接入与米家插座开发环境搭建手册。" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctext y='20' font-size='20'%3E📚%3C/text%3E%3C/svg%3E" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css" id="hljs-theme" />
 <style>
@@ -50,34 +50,23 @@
   a { color: var(--accent); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* Layout */
   .app { display: flex; min-height: 100vh; }
   .sidebar {
-    width: var(--sidebar-w);
-    flex-shrink: 0;
-    background: var(--sidebar-bg);
-    border-right: 1px solid var(--border);
-    position: sticky; top: 0;
-    height: 100vh; overflow-y: auto;
+    width: var(--sidebar-w); flex-shrink: 0;
+    background: var(--sidebar-bg); border-right: 1px solid var(--border);
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
     padding: 22px 16px 40px;
   }
-  .main {
-    flex: 1; min-width: 0;
-    padding: 40px 56px 80px;
-    max-width: 920px;
-  }
+  .main { flex: 1; min-width: 0; padding: 40px 56px 80px; max-width: 920px; }
   .content { display: none; }
   .content.active { display: block; animation: fade .25s ease; }
   @keyframes fade { from { opacity: 0; transform: translateY(6px);} to { opacity:1; transform:none; } }
 
-  /* Sidebar */
   .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 18px; }
   .brand .logo { font-size: 24px; }
   .brand .title { font-weight: 700; font-size: 15.5px; letter-spacing: .2px; }
   .brand .sub { font-size: 11.5px; color: var(--text-muted); display: block; margin-top: 1px; }
-  .search {
-    position: relative; margin: 4px 0 18px;
-  }
+  .search { position: relative; margin: 4px 0 18px; }
   .search input {
     width: 100%; padding: 9px 12px 9px 34px;
     background: var(--bg); border: 1px solid var(--border);
@@ -99,14 +88,9 @@
   }
   .nav-item:hover { background: var(--bg-soft); color: var(--text); text-decoration: none; }
   .nav-item.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
-  .nav-item .tag { float: right; font-size: 10.5px; color: var(--text-muted); }
   .nav-item.hidden { display: none; }
 
-  /* Topbar */
-  .topbar {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 28px;
-  }
+  .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px; }
   .breadcrumb { font-size: 13px; color: var(--text-muted); }
   .breadcrumb b { color: var(--text); }
   .tools { display: flex; gap: 8px; }
@@ -118,7 +102,6 @@
   }
   .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* Typography */
   h1 { font-size: 32px; font-weight: 700; margin: 0 0 8px; letter-spacing: -.3px; }
   h2 { font-size: 22px; font-weight: 700; margin: 36px 0 12px; padding-top: 8px; border-top: 1px solid var(--border); }
   h3 { font-size: 16.5px; font-weight: 600; margin: 24px 0 8px; }
@@ -131,10 +114,7 @@
     background: var(--code-bg); color: var(--code-text);
     padding: 2px 6px; border-radius: 5px; font-size: 13px;
   }
-  pre {
-    margin: 0 0 18px; border-radius: 10px; overflow: hidden;
-    border: 1px solid var(--border);
-  }
+  pre { margin: 0 0 18px; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
   pre code { display: block; padding: 18px 20px; background: #0d1117; color: #e6edf3; font-size: 13px; line-height: 1.6; }
   .code-header {
     display: flex; justify-content: space-between; align-items: center;
@@ -149,7 +129,6 @@
   }
   .copy-btn:hover { color: #e6edf3; border-color: #6cb6ff; }
 
-  /* Cards */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin: 20px 0 28px; }
   .card {
     display: block; padding: 18px; background: var(--bg-soft);
@@ -161,7 +140,6 @@
   .card .t { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 4px; }
   .card .d { font-size: 13px; color: var(--text-muted); }
 
-  /* Callout */
   .callout {
     padding: 14px 18px; border-radius: 8px; margin: 18px 0;
     border-left: 3px solid var(--accent); background: var(--accent-soft);
@@ -169,40 +147,12 @@
   }
   .callout.warn { border-left-color: #f59e0b; background: rgba(245,158,11,.08); }
 
-  /* Placeholder */
-  .placeholder {
-    text-align: center; padding: 50px 20px; border: 2px dashed var(--border);
-    border-radius: 12px; color: var(--text-muted);
-  }
-  .placeholder .emoji { font-size: 42px; margin-bottom: 12px; }
-  .placeholder h3 { color: var(--text); margin-bottom: 6px; }
-
-  /* Image demo */
-  figure { margin: 20px 0; }
-  figure img { max-width: 100%; border-radius: 10px; border: 1px solid var(--border); display: block; }
-  figcaption { font-size: 12.5px; color: var(--text-muted); margin-top: 8px; text-align: center; }
-
-  /* Video demo */
-  .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; border: 1px solid var(--border); margin: 18px 0; }
-  .video-wrap video, .video-wrap iframe { position: absolute; top:0; left:0; width:100%; height:100%; border:0; }
-
-  /* Steps */
-  .step { display: flex; gap: 14px; margin-bottom: 18px; }
-  .step .num {
-    flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
-    background: var(--accent); color: #fff; font-weight: 700; font-size: 14px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .step .body { flex: 1; }
-  .step .body h3 { margin-top: 2px; }
-
   table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13.5px; }
   th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
   th { background: var(--bg-soft); font-weight: 600; color: var(--text-soft); }
 
   .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12.5px; color: var(--text-muted); }
 
-  /* Download list */
   .file-list { margin: 18px 0; }
   .file-item {
     display: flex; align-items: center; gap: 14px;
@@ -222,7 +172,6 @@
   }
   .dl-btn:hover { opacity: .88; text-decoration: none; }
 
-  /* Mobile */
   .menu-toggle { display: none; }
   @media (max-width: 860px) {
     .sidebar { position: fixed; left: -300px; z-index: 100; transition: left .25s; box-shadow: 2px 0 12px rgba(0,0,0,.15); }
@@ -237,13 +186,12 @@
 </head>
 <body>
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar" id="sidebar">
     <div class="brand">
       <span class="logo">📚</span>
       <div>
         <span class="title">团队技术手册</span>
-        <span class="sub">共享文档站 · v0.1</span>
+        <span class="sub">共享文档站 · v0.2</span>
       </div>
     </div>
 
@@ -255,40 +203,20 @@
     <nav id="nav">
       <div class="nav-group">
         <div class="label">开始</div>
-        <a class="nav-item" data-route="home">首页 · 站点介绍</a>
+        <a class="nav-item" data-route="home">首页</a>
       </div>
-
       <div class="nav-group">
-        <div class="label">技术手册分类</div>
+        <div class="label">技术手册</div>
         <a class="nav-item" data-route="cat-env">开发环境搭建</a>
-        <a class="nav-item" data-route="cat-api">接口文档 <span class="tag">空</span></a>
-        <a class="nav-item" data-route="cat-deploy">部署运维 <span class="tag">空</span></a>
-        <a class="nav-item" data-route="cat-faq">常见问题 <span class="tag">空</span></a>
       </div>
-
-      <div class="nav-group">
-        <div class="label">内容示例</div>
-        <a class="nav-item" data-route="demo-code">代码嵌入示例</a>
-        <a class="nav-item" data-route="demo-image">图片嵌入示例</a>
-        <a class="nav-item" data-route="demo-video">视频嵌入示例</a>
-      </div>
-
       <div class="nav-group">
         <div class="label">资料</div>
-        <a class="nav-item" data-route="downloads">资料下载</a>
-      </div>
-
-      <div class="nav-group">
-        <div class="label">维护指南</div>
-        <a class="nav-item" data-route="guide-add">如何添加内容</a>
-        <a class="nav-item" data-route="guide-deploy">如何发布托管</a>
-        <a class="nav-item" data-route="guide-about">关于本站</a>
+        <a class="nav-item" data-route="downloads">代码下载</a>
       </div>
     </nav>
   </aside>
   <div class="overlay" id="overlay"></div>
 
-  <!-- Main -->
   <main class="main">
     <div class="topbar">
       <div class="breadcrumb" id="breadcrumb"><b>首页</b></div>
@@ -302,70 +230,29 @@
 
       <!-- HOME -->
       <section class="content" data-route="home">
-        <h1>团队技术手册 · 共享文档站</h1>
-        <p class="lead">这是一个面向异地团队的共享技术文档站。成员拿到网址，用浏览器直接打开即可浏览手册、代码、图片和视频，无需登录、无需安装任何软件。</p>
+        <h1>涂鸦云 IoT 接入 · 开发环境手册</h1>
+        <p class="lead">ECM50-A 工控机通过 MQTT 标准协议接入涂鸦云平台，上报冷库温度、湿度、运行模式和在线状态。同时通过 python-miio 库在局域网内读取/控制米家智能插座3。</p>
 
-        <div class="callout">
-          本站是一个"空架子"：目录结构已搭好，内容分类已就位。你只需把团队的技术手册按分类填进对应位置即可，后续可随时修改。
-        </div>
-
-        <h2>本站能放什么</h2>
         <div class="cards">
-          <a class="card" data-go="demo-code">
-            <div class="emoji">💻</div>
-            <div class="t">代码</div>
-            <div class="d">支持多种语言语法高亮，一键复制</div>
-          </a>
-          <a class="card" data-go="demo-image">
-            <div class="emoji">🖼️</div>
-            <div class="t">图片</div>
-            <div class="d">架构图、流程图、截图直接嵌入</div>
-          </a>
-          <a class="card" data-go="demo-video">
-            <div class="emoji">🎬</div>
-            <div class="t">视频</div>
-            <div class="d">操作录像、教学视频在线播放</div>
-          </a>
-          <a class="card" data-go="guide-add">
-            <div class="emoji">✍️</div>
-            <div class="t">图文手册</div>
-            <div class="d">分步骤说明、表格、注意事项</div>
+          <a class="card" data-go="cat-env">
+            <div class="emoji">🛠️</div>
+            <div class="t">开发环境搭建</div>
+            <div class="d">依赖安装、设备凭证、功能点定义、启动模拟器</div>
           </a>
           <a class="card" data-go="downloads">
-            <div class="emoji">📥</div>
-            <div class="t">资料下载</div>
-            <div class="d">PDF / Word / 压缩包等文件可下载</div>
+            <div class="emoji">📦</div>
+            <div class="t">代码下载</div>
+            <div class="d">完整项目代码压缩包，一键下载</div>
           </a>
         </div>
 
-        <h2>快速开始</h2>
-        <div class="step"><div class="num">1</div><div class="body">
-          <h3>浏览手册</h3>
-          <p>点击左侧"技术手册分类"下的任意分类进入对应手册。当前各分类为空，等你填充内容。</p>
-        </div></div>
-        <div class="step"><div class="num">2</div><div class="body">
-          <h3>添加内容</h3>
-          <p>查看 <a data-go="guide-add">如何添加内容</a>，按步骤把手册文字、代码、图片、视频填进站点。</p>
-        </div></div>
-        <div class="step"><div class="num">3</div><div class="body">
-          <h3>发布给团队</h3>
-          <p>查看 <a data-go="guide-deploy">如何发布托管</a>，把站点发布到 GitHub Pages 或 Netlify，拿到一个公网网址分享给团队。</p>
-        </div></div>
-
-        <div class="callout warn">
-          现在这份文件只存在于你本机。在发布托管之前，团队成员还无法通过网址访问。发布方法见"如何发布托管"页。
+        <h2>项目架构</h2>
+        <div class="callout">
+          <b>涂鸦云 IoT</b>：ECM50-A → MQTT/TLS → m1.tuyacn.com (涂鸦云) → 前端展示<br>
+          <b>米家插座</b>：PC → python-miio (局域网 MIIO 协议) → 米家智能插座3
         </div>
 
-        <h2>站点特点</h2>
-        <ul>
-          <li><b>免登录</b>：纯静态网页，浏览器打开即可看，无需账号。</li>
-          <li><b>单文件</b>：整个站点就是一个 index.html，方便复制、传输、备份。</li>
-          <li><b>离线可用</b>：断网也能看（视频/图片若为外链则需联网）。</li>
-          <li><b>深色模式</b>：右上角一键切换明暗主题。</li>
-          <li><b>响应式</b>：手机、平板、电脑都能正常浏览。</li>
-        </ul>
-
-        <div class="footer">由 TRAE 协助生成 · 你可以自由修改、分发本文件</div>
+        <div class="footer">涂鸦云 IoT 接入项目 · 团队共享文档</div>
       </section>
 
       <!-- CATEGORY: ENV -->
@@ -488,383 +375,52 @@ python main.py</code></pre>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>requirements.txt</code></td><td style="padding:8px;">Python 依赖列表</td></tr>
           </tbody>
         </table>
-
-        <h2>十一、代码下载</h2>
-        <p>所有代码文件可在「资料下载」页面下载。以下为快速链接：</p>
-        <ul>
-          <li><a href="downloads/tuya_simulator.py" download>tuya_simulator.py</a> — 涂鸦云数据模拟器</li>
-          <li><a href="downloads/tuya_mqtt_auth.py" download>tuya_mqtt_auth.py</a> — MQTT 参数计算工具</li>
-          <li><a href="downloads/test_tuya_mqtt.py" download>test_tuya_mqtt.py</a> — PC 端连接测试</li>
-          <li><a href="downloads/ecm50a_tuya_main.py" download>ecm50a_tuya_main.py</a> — ECM50-A 设备程序</li>
-          <li><a href="downloads/config.py" download>config.py</a> — 米家配置模块</li>
-          <li><a href="downloads/socket_reader.py" download>socket_reader.py</a> — 米家插座读取模块</li>
-          <li><a href="downloads/main.py" download>main.py</a> — 米家插座示例程序</li>
-          <li><a href="downloads/requirements.txt" download>requirements.txt</a> — 依赖列表</li>
-          <li><a href="downloads/.env.example" download>.env.example</a> — 配置模板</li>
-        </ul>
-      </section>
-
-      <!-- CATEGORY: API -->
-      <section class="content" data-route="cat-api">
-        <h1>接口文档</h1>
-        <p class="lead">统一存放团队内部接口的请求/响应说明、鉴权方式、示例数据。</p>
-        <div class="placeholder">
-          <div class="emoji">🔌</div>
-          <h3>这里还没有内容</h3>
-          <p>把接口说明写到这里，可用表格列出参数。<br>添加方法见 <a data-go="guide-add">如何添加内容</a>。</p>
-        </div>
-        <h2>建议放什么</h2>
-        <ul>
-          <li>接口路径、方法、鉴权方式</li>
-          <li>请求参数表（字段 / 类型 / 必填 / 说明）</li>
-          <li>请求与响应示例（放代码块）</li>
-          <li>错误码对照表</li>
-        </ul>
-      </section>
-
-      <!-- CATEGORY: DEPLOY -->
-      <section class="content" data-route="cat-deploy">
-        <h1>部署运维</h1>
-        <p class="lead">记录部署流程、服务器配置、CI/CD、常见运维操作。</p>
-        <div class="placeholder">
-          <div class="emoji">🚀</div>
-          <h3>这里还没有内容</h3>
-          <p>把部署与运维步骤写到这里。<br>添加方法见 <a data-go="guide-add">如何添加内容</a>。</p>
-        </div>
-        <h2>建议放什么</h2>
-        <ul>
-          <li>部署架构图（可嵌入图片）</li>
-          <li>部署命令与配置（放代码块）</li>
-          <li>回滚、扩容、备份流程</li>
-          <li>监控与告警说明</li>
-        </ul>
-      </section>
-
-      <!-- CATEGORY: FAQ -->
-      <section class="content" data-route="cat-faq">
-        <h1>常见问题</h1>
-        <p class="lead">收集团队高频问题与排错思路，减少重复沟通。</p>
-        <div class="placeholder">
-          <div class="emoji">❓</div>
-          <h3>这里还没有内容</h3>
-          <p>把常见问答写到这里。<br>添加方法见 <a data-go="guide-add">如何添加内容</a>。</p>
-        </div>
-        <h2>建议放什么</h2>
-        <ul>
-          <li>高频报错与解决方案</li>
-          <li>环境/权限/网络类问题排查</li>
-          <li>团队约定与最佳实践</li>
-        </ul>
-      </section>
-
-      <!-- DEMO: CODE -->
-      <section class="content" data-route="demo-code">
-        <h1>代码嵌入示例</h1>
-        <p class="lead">用代码块展示脚本、命令、配置。支持数十种语言语法高亮，并提供一键复制按钮。</p>
-
-        <h2>Shell 命令</h2>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-bash"># 安装依赖并启动服务
-cd /project/api
-npm install
-npm run dev</code></pre>
-        </div>
-
-        <h2>Python 代码</h2>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">python</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-python">def fibonacci(n: int) -> list[int]:
-    """生成前 n 项斐波那契数列"""
-    seq = [0, 1]
-    for _ in range(n - 2):
-        seq.append(seq[-1] + seq[-2])
-    return seq[:n]
-
-if __name__ == "__main__":
-    print(fibonacci(10))</code></pre>
-        </div>
-
-        <h2>JSON 配置</h2>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">json</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-json">{
-  "service": "user-api",
-  "version": "1.4.0",
-  "endpoints": {
-    "host": "0.0.0.0",
-    "port": 8080
-  },
-  "database": {
-    "url": "postgres://db.local:5432/users"
-  }
-}</code></pre>
-        </div>
-
-        <h2>如何添加你自己的代码</h2>
-        <p>参考 <a data-go="guide-add">如何添加内容</a> 页的"代码块"小节，把上面的模板复制到任意分类页即可。</p>
-      </section>
-
-      <!-- DEMO: IMAGE -->
-      <section class="content" data-route="demo-image">
-        <h1>图片嵌入示例</h1>
-        <p class="lead">把架构图、流程图、UI 截图等直接嵌入页面，配合图注说明。</p>
-
-        <h2>架构图示例</h2>
-        <figure>
-          <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Flat%20minimalist%20system%20architecture%20diagram%20for%20a%20web%20application%2C%20showing%20client%2C%20load%20balancer%2C%20API%20servers%2C%20database%2C%20cache%2C%20with%20labeled%20boxes%20and%20arrows%2C%20clean%20technical%20illustration%2C%20blue%20and%20grey%20palette%2C%20white%20background&image_size=landscape_16_9" alt="系统架构图示例" loading="lazy" />
-          <figcaption>图 1 · 一个典型的 Web 应用架构（示例图）</figcaption>
-        </figure>
-
-        <h2>图片建议放什么</h2>
-        <ul>
-          <li>系统架构图、部署拓扑图</li>
-          <li>业务流程图、时序图</li>
-          <li>界面截图、配置截图</li>
-          <li>排错路径截图</li>
-        </ul>
-
-        <div class="callout">
-          图片可以放在同目录的 <code>images/</code> 文件夹，用 <code>&lt;img src="images/xxx.png"&gt;</code> 引用；也可直接贴外链图片地址。
-        </div>
-
-        <h2>如何添加你自己的图片</h2>
-        <p>参考 <a data-go="guide-add">如何添加内容</a> 页的"图片"小节。</p>
-      </section>
-
-      <!-- DEMO: VIDEO -->
-      <section class="content" data-route="demo-video">
-        <h1>视频嵌入示例</h1>
-        <p class="lead">支持两种视频：本地/自托管视频文件（HTML5 播放器），以及外部视频（如 Bilibili、YouTube 的嵌入链接）。</p>
-
-        <h2>本地/自托管视频</h2>
-        <p>把视频文件（mp4 等）放进 <code>videos/</code> 文件夹，用下面的方式嵌入。下方为示例演示：</p>
-        <div class="video-wrap">
-          <video controls preload="metadata" poster="">
-            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
-            你的浏览器不支持 video 标签。
-          </video>
-        </div>
-        <p><small>示例视频为公开测试素材 Big Buck Bunny，仅作播放演示。正式使用时替换为你自己的视频地址。</small></p>
-
-        <h2>外部视频嵌入（Bilibili / YouTube 等）</h2>
-        <p>以 Bilibili 为例：在视频页面点"分享 → 嵌入代码"，复制其中的 <code>src</code> 地址，替换下面的 <code>src</code> 即可。</p>
-        <div class="video-wrap">
-          <iframe src="https://www.youtube.com/embed/aqz-2-bp7s4" title="示例嵌入视频" allowfullscreen></iframe>
-        </div>
-
-        <div class="callout warn">
-          外链视频需要联网才能播放；自托管视频随站点一起发布即可离线播放，但文件较大时建议用图床/对象存储单独托管。
-        </div>
-
-        <h2>如何添加你自己的视频</h2>
-        <p>参考 <a data-go="guide-add">如何添加内容</a> 页的"视频"小节。</p>
       </section>
 
       <!-- DOWNLOADS -->
       <section class="content" data-route="downloads">
-        <h1>资料下载</h1>
-        <p class="lead">把 PDF、Word、Excel、压缩包等文件放到 <code>downloads/</code> 文件夹，成员即可在网页上点击下载。文件随站点一起托管到云端，关机也不影响下载。</p>
+        <h1>代码下载</h1>
+        <p class="lead">完整项目代码打包下载，解压后即可使用。</p>
 
-        <div class="callout">
-          发布到 GitHub Pages / Netlify 后，这里的文件会被一起托管到云端服务器，团队成员 24 小时可下载，与你的电脑是否开机无关。
-        </div>
-
-        <h2>文件列表</h2>
         <div class="file-list">
           <div class="file-item">
-            <span class="ficon">📄</span>
+            <span class="ficon">📦</span>
             <div class="fmeta">
-              <div class="fname">团队技术规范示例.txt</div>
-              <div class="fdesc">示例文件——演示下载功能，正式使用时替换为你的真实文档</div>
+              <div class="fname">project-code.zip</div>
+              <div class="fdesc">涂鸦云 IoT 接入 + 米家插座开发环境 全部代码文件（含注释）</div>
             </div>
-            <span class="fsize">约 1 KB</span>
-            <a class="dl-btn" href="downloads/sample-manual.txt" download>下载</a>
-          </div>
-          <div class="file-item">
-            <span class="ficon">📄</span>
-            <div class="fmeta">
-              <div class="fname">（待添加）接口手册.pdf</div>
-              <div class="fdesc">把文件放进 downloads/ 文件夹，再在此添加一条下载链接即可</div>
-            </div>
-            <span class="fsize">—</span>
-            <span class="dl-btn" style="background:var(--border);color:var(--text-muted);cursor:default;">待添加</span>
+            <span class="fsize">约 25 KB</span>
+            <a class="dl-btn" href="downloads/project-code.zip" download>下载</a>
           </div>
         </div>
 
-        <h2>支持的文件类型</h2>
-        <table>
-          <tr><th>类型</th><th>示例</th><th>说明</th></tr>
-          <tr><td>文档</td><td>.pdf / .docx / .xlsx</td><td>技术手册、规范、表格</td></tr>
-          <tr><td>压缩包</td><td>.zip / .rar / .7z</td><td>源码、素材打包</td></tr>
-          <tr><td>安装包</td><td>.exe / .dmg / .apk</td><td>客户端、工具</td></tr>
-          <tr><td>其他</td><td>任意格式</td><td>浏览器能识别的会直接预览，其余直接下载</td></tr>
-        </table>
-
-        <div class="callout warn">
-          <b>大小限制</b>：GitHub Pages 单文件建议 &lt; 50MB（硬上限 100MB），整仓库建议 &lt; 1GB；Netlify 拖拽发布单文件上限 100MB。超大文件（视频、大型安装包）建议放外部网盘（百度网盘 / 阿里云盘 / OneDrive），在此放外链即可。
-        </div>
-
-        <h2>如何添加你自己的下载文件</h2>
-        <p>参考 <a data-go="guide-add">如何添加内容</a> 页的"可下载文件"小节。</p>
-      </section>
-
-      <!-- GUIDE: ADD -->
-      <section class="content" data-route="guide-add">
-        <h1>如何添加内容</h1>
-        <p class="lead">本站是单个 HTML 文件，所有内容都写在 <code>index.html</code> 里。用任意文本/代码编辑器（如 VS Code）打开即可编辑。</p>
-
-        <h2>1. 打开文件</h2>
-        <p>用 VS Code 打开 <code>index.html</code>。在文件中搜索 <code>data-route="cat-env"</code> 这类标记，就能定位到对应的分类页面。</p>
-
-        <h2>2. 写入文字内容</h2>
-        <p>在对应分类的 <code>&lt;section&gt;</code> 里，把"placeholder"占位块替换成你的手册文字即可。标题用 <code>&lt;h2&gt;</code>、段落用 <code>&lt;p&gt;</code>、列表用 <code>&lt;ul&gt;&lt;li&gt;</code>。</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;h2&gt;安装步骤&lt;/h2&gt;
-&lt;p&gt;先克隆仓库，再安装依赖：&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;克隆仓库&lt;/li&gt;
-  &lt;li&gt;执行 npm install&lt;/li&gt;
-&lt;/ul&gt;</code></pre>
-        </div>
-
-        <h2>3. 嵌入代码</h2>
-        <p>复制下面的模板，把 <code>language-xxx</code> 改成对应语言（如 <code>language-python</code>、<code>language-bash</code>、<code>language-json</code>），中间填代码。</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;div class="code-block"&gt;
-  &lt;div class="code-header"&gt;&lt;span class="lang"&gt;bash&lt;/span&gt;&lt;button class="copy-btn"&gt;复制&lt;/button&gt;&lt;/div&gt;
-  &lt;pre&gt;&lt;code class="language-bash"&gt;npm install&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <h2>4. 嵌入图片</h2>
-        <p>推荐把图片放进同目录的 <code>images/</code> 文件夹，再用相对路径引用：</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;figure&gt;
-  &lt;img src="images/architecture.png" alt="架构图" /&gt;
-  &lt;figcaption&gt;图 1 · 系统架构&lt;/figcaption&gt;
-&lt;/figure&gt;</code></pre>
-        </div>
-
-        <h2>5. 嵌入视频</h2>
-        <p><b>本地视频</b>（放进 <code>videos/</code> 文件夹）：</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;div class="video-wrap"&gt;
-  &lt;video controls preload="metadata"&gt;
-    &lt;source src="videos/demo.mp4" type="video/mp4" /&gt;
-  &lt;/video&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-        <p><b>外部视频</b>（B 站/YouTube 分享链接里的 src）：</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;div class="video-wrap"&gt;
-  &lt;iframe src="外部视频嵌入地址" allowfullscreen&gt;&lt;/iframe&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-
-        <h2>6. 新增一个分类页面</h2>
-        <p>若默认 4 个分类不够，可复制一个现有的 <code>&lt;section class="content" data-route="cat-xxx"&gt;…&lt;/section&gt;</code> 块，改 <code>data-route</code> 名称，再在左侧 <code>&lt;nav&gt;</code> 里加一条 <code>&lt;a class="nav-item" data-route="cat-xxx"&gt;新分类&lt;/a&gt;</code>。</p>
-
-        <h2>7. 添加可下载文件</h2>
-        <p>把文件放进 <code>downloads/</code> 文件夹，然后在"资料下载"页复制下面模板，改文件名、大小、说明即可：</p>
-        <div class="code-block">
-          <div class="code-header"><span class="lang">html</span><button class="copy-btn">复制</button></div>
-          <pre><code class="language-html">&lt;div class="file-item"&gt;
-  &lt;span class="ficon"&gt;📄&lt;/span&gt;
-  &lt;div class="fmeta"&gt;
-    &lt;div class="fname"&gt;接口手册.pdf&lt;/div&gt;
-    &lt;div class="fdesc"&gt;团队内部接口说明&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;span class="fsize"&gt;2.3 MB&lt;/span&gt;
-  &lt;a class="dl-btn" href="downloads/api-manual.pdf" download&gt;下载&lt;/a&gt;
-&lt;/div&gt;</code></pre>
-        </div>
-        <p>图标可按类型替换：<code>📄</code> 文档、<code>📦</code> 压缩包、<code>⚙️</code> 安装包、<code>🎬</code> 视频、<code>🖼️</code> 图片。外链网盘文件把 <code>href</code> 换成网盘分享链接、去掉 <code>download</code> 即可。</p>
-
-        <div class="callout">
-          改完后直接在浏览器刷新 <code>index.html</code> 即可看到效果，无需任何编译。
-        </div>
-      </section>
-
-      <!-- GUIDE: DEPLOY -->
-      <section class="content" data-route="guide-deploy">
-        <h1>如何发布托管</h1>
-        <p class="lead">把 index.html 发布到公网，团队就能通过网址访问。下面给两种免费、最常用的方式。</p>
-
-        <h2>方式 A：GitHub Pages（推荐，长期维护）</h2>
-        <div class="step"><div class="num">1</div><div class="body">
-          <h3>注册 GitHub 并新建仓库</h3>
-          <p>在 <a href="https://github.com" target="_blank" rel="noopener">github.com</a> 注册账号，新建一个公开仓库（如 <code>team-docs</code>）。</p>
-        </div></div>
-        <div class="step"><div class="num">2</div><div class="body">
-          <h3>上传 index.html</h3>
-          <p>把 <code>index.html</code>（连同 <code>images/</code>、<code>videos/</code> 文件夹）上传到仓库根目录。可直接用 GitHub 网页"Add file → Upload files"。</p>
-        </div></div>
-        <div class="step"><div class="num">3</div><div class="body">
-          <h3>开启 Pages</h3>
-          <p>仓库 Settings → Pages → Source 选 <code>main</code> 分支 / <code>/ (root)</code>，保存。稍等片刻会得到一个网址，形如 <code>https://用户名.github.io/team-docs/</code>。</p>
-        </div></div>
-        <div class="step"><div class="num">4</div><div class="body">
-          <h3>分享网址</h3>
-          <p>把这个网址发给你团队的成员，他们用浏览器打开即可浏览。</p>
-        </div></div>
-
-        <h2>方式 B：Netlify（拖拽即发布，更快）</h2>
-        <div class="step"><div class="num">1</div><div class="body">
-          <h3>准备一个文件夹</h3>
-          <p>把 <code>index.html</code>（和 <code>images/</code>、<code>videos/</code>）放进一个文件夹。</p>
-        </div></div>
-        <div class="step"><div class="num">2</div><div class="body">
-          <h3>拖拽上传</h3>
-          <p>访问 <a href="https://app.netlify.com/drop" target="_blank" rel="noopener">app.netlify.com/drop</a>，把整个文件夹拖到页面里，几秒后会生成一个公网网址。</p>
-        </div></div>
-        <div class="step"><div class="num">3</div><div class="body">
-          <h3>分享网址</h3>
-          <p>可改一个简短的二级域名，再发给团队成员。</p>
-        </div></div>
-
-        <h2>方式 C：公司内网服务器</h2>
-        <p>如果手册含敏感信息、只能内网访问，把 <code>index.html</code> 及资源文件夹放到任意内网 Web 服务器（Nginx/Apache/IIS）的站点目录即可，成员用内网网址访问。</p>
-
-        <div class="callout warn">
-          更新内容后：GitHub Pages 需重新提交文件；Netlify 拖拽方式需重新拖一次。建议内容稳定后再正式分享网址。
-        </div>
-
-        <h2>本地预览</h2>
-        <p>发布前可先在本机预览：直接双击 <code>index.html</code> 用浏览器打开即可。视频/外链图片需联网。</p>
-      </section>
-
-      <!-- ABOUT -->
-      <section class="content" data-route="guide-about">
-        <h1>关于本站</h1>
-        <p class="lead">本站是一个轻量、免登录的团队共享技术文档站点，适合异地团队共享手册、代码、图片与视频。</p>
-
-        <h2>设计理念</h2>
+        <h2>压缩包内容</h2>
         <ul>
-          <li><b>够用就好</b>：不依赖数据库、不依赖后端，一个文件就是整个站点。</li>
-          <li><b>零门槛访问</b>：成员不需要账号，浏览器打开网址即可看。</li>
-          <li><b>易于维护</b>：用 VS Code 之类的编辑器直接改 HTML，刷新即可见。</li>
-          <li><b>可托管</b>：随便放到 GitHub Pages、Netlify、内网服务器都能跑。</li>
+          <li><code>tuya_simulator.py</code> — 涂鸦云数据模拟器（挂机版）</li>
+          <li><code>tuya_mqtt_auth.py</code> — MQTT 参数计算工具</li>
+          <li><code>test_tuya_mqtt.py</code> — PC 端连接测试脚本</li>
+          <li><code>ecm50a_tuya_main.py</code> — ECM50-A MicroPython 主程序</li>
+          <li><code>config.py</code> — 米家配置管理模块</li>
+          <li><code>socket_reader.py</code> — 米家插座数据读取模块</li>
+          <li><code>main.py</code> — 米家插座示例程序</li>
+          <li><code>requirements.txt</code> — Python 依赖列表</li>
+          <li><code>.env.example</code> — 配置模板</li>
         </ul>
 
-        <h2>技术组成</h2>
-        <table>
-          <tr><th>部分</th><th>说明</th></tr>
-          <tr><td>结构 / 样式</td><td>原生 HTML + CSS，无前端框架依赖</td></tr>
-          <tr><td>代码高亮</td><td>highlight.js（CDN 引入）</td></tr>
-          <tr><td>导航 / 搜索 / 主题</td><td>原生 JavaScript</td></tr>
-        </table>
+        <h2>使用方法</h2>
+        <div class="code-block">
+          <div class="code-header"><span class="lang">bash</span><button class="copy-btn">复制</button></div>
+          <pre><code class="language-bash"># 1. 解压下载的 project-code.zip
+unzip project-code.zip
 
-        <div class="callout">
-          想要更强的协作编辑、权限管理、在线评论？可考虑迁移到飞书知识库（有网址、需飞书账号登录）或 Notion。
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 启动涂鸦云模拟器
+python tuya_simulator.py</code></pre>
         </div>
 
-        <div class="footer">由 TRAE 协助生成 · 自由修改、分发</div>
+        <div class="footer">涂鸦云 IoT 接入项目 · 团队共享文档</div>
       </section>
 
     </div>
@@ -896,7 +452,7 @@ if __name__ == "__main__":
     if (!found) { sections[0].classList.add('active'); route = 'home'; }
     navItems.forEach(n => n.classList.toggle('active', n.dataset.route === route));
     const active = document.querySelector('.nav-item.active');
-    if (active) breadcrumb.innerHTML = '<b>' + active.textContent.trim().replace(/\s+空$/, '') + '</b>';
+    if (active) breadcrumb.innerHTML = '<b>' + active.textContent.trim() + '</b>';
     else breadcrumb.innerHTML = '<b>首页</b>';
     window.scrollTo(0, 0);
     closeSidebar();
@@ -907,16 +463,13 @@ if __name__ == "__main__":
     route();
   }
 
-  // nav clicks
   navItems.forEach(item => {
     item.addEventListener('click', e => { e.preventDefault(); go(item.dataset.route); });
   });
-  // inline links with data-go
   document.querySelectorAll('[data-go]').forEach(el => {
     el.addEventListener('click', e => { e.preventDefault(); go(el.dataset.go); });
   });
 
-  // theme
   const themeToggle = document.getElementById('themeToggle');
   const hljsTheme = document.getElementById('hljs-theme');
   function setTheme(t) {
@@ -935,7 +488,6 @@ if __name__ == "__main__":
     setTheme(cur === 'dark' ? 'light' : 'dark');
   });
 
-  // search
   const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.trim().toLowerCase();
@@ -945,7 +497,6 @@ if __name__ == "__main__":
     });
   });
 
-  // copy buttons
   function bindCopy() {
     document.querySelectorAll('.copy-btn').forEach(btn => {
       if (btn.dataset.bound) return;
@@ -966,7 +517,6 @@ if __name__ == "__main__":
     });
   }
 
-  // highlight
   function highlight() {
     document.querySelectorAll('pre code').forEach(b => {
       try { hljs.highlightElement(b); } catch(e){}
@@ -974,7 +524,6 @@ if __name__ == "__main__":
     bindCopy();
   }
 
-  // mobile sidebar
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('overlay');
   const menuToggle = document.getElementById('menuToggle');
@@ -985,10 +534,8 @@ if __name__ == "__main__":
   });
   overlay.addEventListener('click', closeSidebar);
 
-  // init
   if (!location.hash) location.hash = 'home';
   route();
-  // register languages
   ['bash','python','json','javascript','html','css'].forEach(l => {
     try { hljs.registerLanguage(l, window['hljs'+l.charAt(0).toUpperCase()+l.slice(1)] || function(){return;}); } catch(e){}
   });
