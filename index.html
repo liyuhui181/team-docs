@@ -355,7 +355,8 @@ python main.py</code></pre>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>test_tuya_mqtt.py</code></td><td style="padding:8px;">PC 端 MQTT 连接测试脚本（paho-mqtt v2 API）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>boot.py</code></td><td style="padding:8px;">ECM50-A 开机引导文件（上电自启第一步）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>main_ecm50a.py</code></td><td style="padding:8px;">ECM50-A 自启入口（上传到设备时改名为 main.py）</td></tr>
-            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>ecm50a_tuya_main.py</code></td><td style="padding:8px;">ECM50-A MicroPython 主程序（含 WiFi/MQTT 断线自动重连、上电自启）</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>ecm50a_tuya_main.py</code></td><td style="padding:8px;">ECM50-A 涂鸦云主程序（含 WiFi/MQTT 断线自动重连、上电自启）</td></tr>
+            <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>ecm50a_device_main.py</code></td><td style="padding:8px;">ECM50-A 设备端主程序（miIO+MQTT，上电自启、断电自动恢复）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>config.py</code></td><td style="padding:8px;">米家插座配置管理模块（从 .env 加载）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>socket_reader.py</code></td><td style="padding:8px;">米家插座数据读取核心模块（python-miio）</td></tr>
             <tr style="border-bottom:1px solid var(--border);"><td style="padding:8px;"><code>main.py</code></td><td style="padding:8px;">米家插座示例程序（连接、读取、监控）</td></tr>
@@ -388,7 +389,8 @@ python main.py</code></pre>
           <li><code>test_tuya_mqtt.py</code> — PC 端连接测试脚本</li>
           <li><code>boot.py</code> — ECM50-A 开机引导（上电自启）</li>
           <li><code>main_ecm50a.py</code> — ECM50-A 自启入口（设备上改名为 main.py）</li>
-          <li><code>ecm50a_tuya_main.py</code> — ECM50-A 主程序（断线自动重连）</li>
+          <li><code>ecm50a_tuya_main.py</code> — ECM50-A 涂鸦云主程序（断线自动重连）</li>
+          <li><code>ecm50a_device_main.py</code> — ECM50-A 设备端主程序（miIO+MQTT，上电自启）</li>
           <li><code>config.py</code> — 米家配置管理模块</li>
           <li><code>socket_reader.py</code> — 米家插座数据读取模块</li>
           <li><code>main.py</code> — 米家插座示例程序</li>
